@@ -3,3 +3,7 @@
 .Rproj*
 lab.md
 out*
+data
+docs
+reports
+.Rproj.user
