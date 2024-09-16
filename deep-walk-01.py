@@ -1,5 +1,6 @@
 """
 Make embeddings of the graph with DeepWalk implemented in karateclub.
+https://github.com/benedekrozemberczki/karateclub
 The nodes are reindexed. 
 Author: Gennady Khvorykh
 Created: July 10, 2024
