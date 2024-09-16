@@ -143,9 +143,9 @@ def partition (lst: list, n: int) -> list:
     chunks =  [lst[round(division * i):round(division * (i + 1))] for i in range(n)]
     return(chunks)
 
-def classify(X, y):
+def classify(X, y, clf="SVM"):
     """
-    Apply binary clussificaton.
+    Apply binary clussificaton with SVM.
     """
     
     # Initiate variables
@@ -154,11 +154,14 @@ def classify(X, y):
     # Split data into train and test ones
     X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42, stratify=y, test_size=0.33)
     
-    # Defining parameter range 
-    parameters = {"C": [0.1, 1, 10, 100, 1000],
+    # Define estimator and parameter ranges for grid search 
+    if clf == "SVM":
+        estimator = SVC(probability=True)
+        parameters = {"C": [0.1, 1, 10, 100, 1000],
                   "gamma": [1, 0.1, 0.01, 0.001, 0.0001]} 
+    
     # Initiate the model 
-    model = GridSearchCV(estimator=SVC(probability=True), param_grid=parameters, n_jobs=cpu) 
+    model = GridSearchCV(estimator=estimator, param_grid=parameters, n_jobs=cpu) 
   
     # Fitting the model for grid search 
     model.fit(X_train, y_train) 
