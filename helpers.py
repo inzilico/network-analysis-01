@@ -15,9 +15,7 @@ import numpy as np
 import random
 
 from sklearn.model_selection import train_test_split, GridSearchCV 
-from sklearn.metrics import roc_auc_score 
-from sklearn.metrics import classification_report 
-from sklearn.metrics import RocCurveDisplay 
+from sklearn.metrics import roc_auc_score, f1_score, classification_report 
 from sklearn.svm import SVC
 
 
@@ -171,7 +169,8 @@ def classify(X, y, clf="SVM"):
     cr = classification_report(y_test, y_pred, zero_division=0, target_names=['class 0', 'class 1'])
     score = model.score(X_test, y_test)
     auc = roc_auc_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred)
     
-    return(model, cr, score, auc)
+    return(model, cr, score, auc, f1)
 
     
