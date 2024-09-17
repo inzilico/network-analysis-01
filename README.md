@@ -16,6 +16,7 @@ The repo contains the scripts to analyse the networks of genes (protein-protein 
 
 ## Prediction of new genes
 
+* **add-outcome-01.py** add the column with gene labels (1 for genes with known label and 0 for unlabeled data)
 
 
 
