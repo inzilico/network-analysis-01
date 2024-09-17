@@ -2,11 +2,13 @@
 
 ## Description
 
-The repo contains the scripts to analyse the networks of genes (protein-protein interactions, PPI) for the following tasks: 
+The repo provides the scripts to analyse the networks of genes for the following tasks: 
 
 * Network Representation Learning (NRL)
 * Vizualization 
 * Prediction of new genes
+
+The networks of genes represent the protein-protein interactions (PPI).
 
 ## General scripts
 
