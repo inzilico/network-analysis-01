@@ -8,6 +8,8 @@ The repo contains the scripts to analyse the networks of genes (protein-protein 
 * Vizualization 
 * Prediction of new genes
 
+## General scripts
+
 * **helpers.py** contains custom functions applied in the scripts from this repo
 
 ## Network Representation Learning
