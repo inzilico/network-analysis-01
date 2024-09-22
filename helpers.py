@@ -173,4 +173,10 @@ def classify(X, y, clf="SVM"):
     
     return(model, cr, score, auc, f1)
 
-    
+def read_resources(x: str):
+    """
+    Load csv file and return a dictionary
+    """
+    check_input([x])
+    df = pd.read_csv(x, header=None, sep=",", comment="#")
+    return(dict(df[[0, 1]].values))
