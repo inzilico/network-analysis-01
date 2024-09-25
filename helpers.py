@@ -13,6 +13,7 @@ from math import log10, ceil
 from sklearn.neighbors import NearestNeighbors
 import numpy as np
 import random
+import matplotlib.pyplot as plt
 
 from sklearn.model_selection import train_test_split, GridSearchCV 
 from sklearn.metrics import roc_auc_score, f1_score, classification_report 
@@ -63,13 +64,22 @@ def check_input(files: list):
             sys.exit(1)
 
 def load_embeddings(x: str) -> tuple:
+    """
+    Load and scale the table of features, say, embeddings.
+    Args: 
+        x: path/to/filename.txt with objects in rows and features in columns.
+        The first column is the object ids. 
+    Return: 
+        A tuple with object ids and ndarray with scaled features.
+    """
+    
     # Check input
     check_input([x])
 
     # Load input data
     d1 = pd.read_csv(x, sep=" ", header=None)
-    print("Input:", x)
-    print("Shape:", d1.shape)
+    print("\nInput:", x)
+    print(f"Shape: {d1.shape[0]} x {d1.shape[1]}\n")
 
     # Subset samples and data (embeddings)
     samples = d1[0]
@@ -180,3 +190,24 @@ def read_resources(x: str):
     check_input([x])
     df = pd.read_csv(x, header=None, sep=",", comment="#")
     return(dict(df[[0, 1]].values))
+
+def plot_history(history, output: str):
+    fig, ax1 = plt.subplots()
+    ax1.set_xlabel("Epochs")
+    ax1.set_ylabel("MSE")
+    ax1.plot(history.history["loss"], label="Training")
+    ax1.plot(history.history["val_loss"], label="Validation")
+    ax1.legend(loc='center right')
+    ax2 = ax1.twinx()
+    ax2.set_ylabel("Accuracy")
+    ax2.plot(history.history["accuracy"], color="tab:green", label="Accuracy")
+    fig.tight_layout()
+    plt.savefig(output + ".history.png")
+    
+def plot_loss(history, output: str):
+    plt.plot(history.history["loss"], label="Training")
+    plt.plot(history.history["val_loss"], label="Validation")
+    plt.xlabel("Epochs")
+    plt.ylabel("MSE")
+    plt.legend()
+    plt.savefig(output + ".loss.png")
