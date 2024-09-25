@@ -39,7 +39,7 @@ ncol = data.shape[1]
 # Instantiate a Keras tenzor
 inputs = Input(shape=(ncol,), name="Input")
 # Encoder layers
-encoded1 = layers.Dense(units=32, activation='relu')(inputs)
+encoded1 = layers.Dense(units=units, activation='relu')(inputs)
 # Decoder layers
 decoded1 = layers.Dense(units=ncol, activation='sigmoid')(encoded1)
 
@@ -62,5 +62,6 @@ plot_loss(history=history, output=output)
 encoder = Model(inputs=inputs, outputs=encoded1, name="Encoder")
 encoded = pd.DataFrame(encoder.predict(data), index=samples)
 
-# Save output
+# Save model and reduced embeddings
+ae.save(output + ".ae.model")
 encoded.to_csv(output + ".encoded.txt", sep=" ", header=False)
