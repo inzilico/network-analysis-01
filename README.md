@@ -20,11 +20,11 @@ The networks of genes represent the protein-protein interactions (PPI).
 
 ## Autoencoders
 
-* **ae-01.py** apply an autoencoder with one hidden layer to embeddings.
+* **ae-01.py** applis an autoencoder with one hidden layer to embeddings.
 
 ## Prediction of new genes
 
-* **add-outcome-01.py** add the column with gene labels (1 for genes with known label and 0 for unlabeled data)
-* **run-binary-classification-01.py** sample negative class and apply binary classification (SVM, RF) to predict new genes. 
+* **add-outcome-01.py** adds the column with gene labels (1 for genes with known label and 0 for unlabeled data)
+* **run-binary-classification-01.py** samples negative class and apply binary classification (SVM, RF) to predict new genes. 
 
 
