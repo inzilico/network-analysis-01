@@ -25,6 +25,6 @@ The networks of genes represent the protein-protein interactions (PPI).
 ## Prediction of new genes
 
 * **add-outcome-01.py** add the column with gene labels (1 for genes with known label and 0 for unlabeled data)
-
+* **run-binary-classification-01.py** sample negative class and apply binary classification (SVM, RF) to predict new genes. 
 
 
