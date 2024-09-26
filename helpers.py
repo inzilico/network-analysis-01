@@ -18,6 +18,7 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split, GridSearchCV 
 from sklearn.metrics import roc_auc_score, f1_score, classification_report 
 from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestClassifier
 
 
 def relabel_nodes(G: nx.graph) -> nx.graph:
@@ -151,13 +152,10 @@ def partition (lst: list, n: int) -> list:
     chunks =  [lst[round(division * i):round(division * (i + 1))] for i in range(n)]
     return(chunks)
 
-def classify(X, y, clf="SVM"):
+def classify(X, y, clf="SVM", cpu = 10):
     """
-    Apply binary clussificaton with SVM.
+    Apply binary clussificaton with SVM and RF.
     """
-    
-    # Initiate variables
-    cpu = 10
     
     # Split data into train and test ones
     X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42, stratify=y, test_size=0.33)
@@ -166,7 +164,15 @@ def classify(X, y, clf="SVM"):
     if clf == "SVM":
         estimator = SVC(probability=True)
         parameters = {"C": [0.1, 1, 10, 100, 1000],
-                  "gamma": [1, 0.1, 0.01, 0.001, 0.0001]} 
+                  "gamma": [1, 0.1, 0.01, 0.001, 0.0001]}
+    elif clf == "RF":
+        estimator = RandomForestClassifier(random_state=42)
+        parameters = {"n_estimators": [50, 100, 150, 200, 250],
+                      "criterion": ['gini', 'entropy', 'log_loss'],
+                      "min_samples_split": [2, 3, 4]}
+    else:
+        print(clf, "is a wrong clussifier!")
+        sys.exit(1)
     
     # Initiate the model 
     model = GridSearchCV(estimator=estimator, param_grid=parameters, n_jobs=cpu) 
