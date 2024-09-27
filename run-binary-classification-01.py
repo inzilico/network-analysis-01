@@ -19,7 +19,8 @@ parser = argparse.ArgumentParser(
 )
 parser.add_argument("-i", "--input", help="path/to/filename.txt with input dataset", required=True)
 parser.add_argument("-o", "--output", help="path/to/prefix to save output files", required=True)
-parser.add_argument("-c", "--clf", help="A string denoting the clussifier (SVM, RF) (default: SVM)", 
+parser.add_argument("-c", "--clf", 
+                    help="A string denoting the clussifier (SVM, RF, AdaBoost) (default: SVM)", 
                     default="SVM")
 
 # Get command line arguments
