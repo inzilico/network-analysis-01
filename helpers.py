@@ -220,3 +220,11 @@ def plot_loss(history, output: str):
     plt.ylabel("MSE")
     plt.legend()
     plt.savefig(output + ".loss.png")
+
+def check_output_folder(x: str) -> None:
+    dirname = os.path.dirname(x)
+    if not os.path.isdir(dirname):
+        os.mkdir(dirname)
+        print(f"{dirname} was created")
+    else:
+        print(f"{dirname} exist")
