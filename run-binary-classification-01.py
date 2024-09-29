@@ -9,8 +9,10 @@ from helpers import check_input, partition, classify
 import argparse
 import pandas as pd
 from collections import Counter
+from random import shuffle
 import numpy as np
 import time
+import sys
 
 # Initiate argument parser
 parser = argparse.ArgumentParser(
@@ -20,8 +22,9 @@ parser = argparse.ArgumentParser(
 parser.add_argument("-i", "--input", help="path/to/filename.txt with input dataset", required=True)
 parser.add_argument("-o", "--output", help="path/to/prefix to save output files", required=True)
 parser.add_argument("-c", "--clf", 
-                    help="A string denoting the clussifier (SVM, RF, AdaBoost) (default: SVM)", 
+                    help="A string denoting the clussifier (SVM, RF, AdaBoost, MLPC) (default: SVM)", 
                     default="SVM")
+parser.add_argument("-s", "--shuffle", help="Shuffle the labels of input data if True. Default: False", action="store_true")
 
 # Get command line arguments
 args = parser.parse_args()
@@ -30,6 +33,7 @@ args = parser.parse_args()
 input_file = args.input
 output = args.output
 clf = args.clf
+shuffle_labels = args.shuffle
 cpu = 10
 ts = time.time()
 
@@ -41,6 +45,7 @@ fh1 = open(output + ".log", "w")
 print("Input:", input_file, file=fh1)
 print("Output:", output, file=fh1)
 print("Clussifier:", clf, file=fh1)
+print("Shuffle:", shuffle_labels, file=fh1)
 
 # Load input dataset
 df1 = pd.read_csv(input_file, sep=" ", header=None)
@@ -48,6 +53,11 @@ print("Input data:", df1.shape, file=fh1)
 
 # Subset labels
 labels = df1[1].to_list()
+
+# Shuffle labels if required
+if shuffle_labels: shuffle(labels) 
+
+# Show the sizes of groups
 size_unlabeled = Counter(labels)[0] 
 size_pos = Counter(labels)[1]
 print("Positive class:", size_pos, file=fh1)
