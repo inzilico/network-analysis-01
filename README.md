@@ -18,6 +18,8 @@ The networks of genes represent the protein-protein interactions (PPI).
 
 * **deep-walk-01.py** creates embeddings of the graph with DeepWalk implemented in the library [karateclub](https://github.com/benedekrozemberczki/karateclub). 
 
+* **deep-walk-02.py** creates embeddings of the graph with custom random walks and Word2vec from [Gensim](https://radimrehurek.com/gensim/) library.  
+
 ## Autoencoders
 
 * **ae-01.py** applis an autoencoder with one hidden layer to embeddings.
