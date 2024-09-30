@@ -24,7 +24,8 @@ parser.add_argument("-o", "--output", help="path/to/prefix to save output files"
 parser.add_argument("-c", "--clf", 
                     help="A string denoting the clussifier (SVM, RF, AdaBoost, MLPC) (default: SVM)", 
                     default="SVM")
-parser.add_argument("-s", "--shuffle", help="Shuffle the labels of input data if True. Default: False", action="store_true")
+parser.add_argument("-s", "--shuffle", help="Shuffle the labels of input data if True. Default: False", 
+                    action="store_true")
 
 # Get command line arguments
 args = parser.parse_args()
