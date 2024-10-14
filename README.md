@@ -18,9 +18,11 @@ The scripts were originally created and applied to analyze the networks of genes
 
 ## Network Representation Learning
 
-* **deep-walk-01.py** creates embeddings of the graph with DeepWalk implemented in the library [karateclub](https://github.com/benedekrozemberczki/karateclub). 
+* **deep-walk-01.py** creates embeddings from adjacency list of the graph with DeepWalk implemented in the library [karateclub](https://github.com/benedekrozemberczki/karateclub). 
 
-* **deep-walk-02.py** creates embeddings of the graph with custom random walks and Word2vec from [Gensim](https://radimrehurek.com/gensim/) library.  
+* **deep-walk-02.py** creates embeddings of the graph with custom random walks and Word2vec from [Gensim](https://radimrehurek.com/gensim/) library. 
+
+* **deep-walk-01.py** creates embeddings from adjacency matrix of the graph with DeepWalk implemented in the library [karateclub](https://github.com/benedekrozemberczki/karateclub). 
 
 ## Autoencoders
 
