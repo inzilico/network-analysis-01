@@ -14,6 +14,7 @@ from sklearn.neighbors import NearestNeighbors
 import numpy as np
 import random
 import matplotlib.pyplot as plt
+import h5py
 
 from sklearn.model_selection import train_test_split, GridSearchCV 
 from sklearn.metrics import roc_auc_score, f1_score, classification_report 
@@ -233,3 +234,30 @@ def check_output_folder(x: str) -> None:
         print(f"{dirname} was created")
     else:
         print(f"{dirname} exist")
+        
+def attach_matrix(file_obj: h5py._hl.files.File) -> h5py._hl.dataset.Dataset | h5py._hl.group.Group:
+       
+    # Get key of dataset
+    key = list(file_obj.keys())[0]
+    
+    # Get object of dataset 
+    if isinstance(file_obj[key], h5py._hl.dataset.Dataset):
+        ds_obj = file_obj[key]
+    elif isinstance(file_obj[key], h5py._hl.group.Group):
+        ds_obj = file_obj[key]["block0_values"]
+    else:
+        print("Unknown type of dataset")
+        sys.exit(1)
+    
+    # Get shape of dataset
+    N = ds_obj.shape[0]
+    M = ds_obj.shape[1]
+    
+    # Check dataset is a square matrix
+    if N != M:
+        print("Dataset is not a square matrix")
+        sys.exit(1)
+    
+    print(f"Dataset shape: {N} x {M}")
+    
+    return ds_obj   
